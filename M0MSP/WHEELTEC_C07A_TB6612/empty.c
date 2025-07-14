@@ -48,11 +48,14 @@ int main(void)
 	OLED_Init();
 	MPU6050_initialize();
 	DMP_Init();
+//	Yaw = Yaw+18;
+//	delay_ms(15000);
     while (1) 
     {
 		//串口1打印编码器数据
 		Read_DMP();
-		printf("Pitch:%.2lf\tRoll:%.2lf\tYaw:%.2lf\r\n",Pitch,Roll,Yaw);
+//		printf("{B%f:%f:%f}$",Pitch,Roll,Yaw);
+//		printf("P:%.2f,R:%.2f,Y:%.2f\r\n",Pitch,Roll,Yaw);
 		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
 		OLED_ShowString(2,2,(uint8_t *)"fuck you");
 		OLED_Refresh_Gram();
@@ -60,7 +63,7 @@ int main(void)
     }
 }
 
-//10ms定时中断
+//10ms定时中断   
 void TIMER_0_INST_IRQHandler(void)
 {
     if(DL_TimerA_getPendingInterrupt(TIMER_0_INST))
@@ -74,8 +77,8 @@ void TIMER_0_INST_IRQHandler(void)
 			Get_Encoder_countA=Get_Encoder_countB=0;
 			if(!Flag_Stop)//单击BLS开启或关闭电机
 			{
-				PWMA = -Velocity_A(400,encoderA_cnt);//PID控制
-				PWMB = -Velocity_B(400,encoderB_cnt);//PID控制
+				PWMA = -Velocity_A(7000,encoderA_cnt);//PID控制   0 --- 60 pwm设置
+				PWMB = -Velocity_B(10,encoderB_cnt);//PID控制
 				Set_PWM(PWMA,PWMB);//PWM波驱动电机
 			}else Set_PWM(0,0);//关闭电机
 			

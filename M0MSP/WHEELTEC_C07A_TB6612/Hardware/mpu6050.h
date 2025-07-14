@@ -377,6 +377,12 @@ extern Imu_t RegOri_mpu6050;
 
 #define MPU6050_WHO_AM_I_BIT        6
 #define MPU6050_WHO_AM_I_LENGTH     6
+
+/*****************自定义define*****************/
+#define YAW_OFFSET			18   //手动校准
+
+/**********************************************/
+
 extern	short gyro[3], accel[3];
 extern int16_t Gx_offset,Gy_offset,Gz_offset;
 extern float Acc1G_Values;
