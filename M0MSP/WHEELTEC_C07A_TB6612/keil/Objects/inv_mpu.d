@@ -71,5 +71,5 @@
   ..\Hardware\key.h ..\Hardware\motor.h ..\Hardware\encoder.h \
   ..\Hardware\MPU6050.h ..\Hardware\inv_mpu.h \
   ..\Hardware\inv_mpu_dmp_motion_driver.h ..\Hardware\dmpKey.h \
-  ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h \
+  ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h ..\Hardware\IR_Moudle.h \
   D:\keil5\ARM\ARMCLANG\include\stdlib.h

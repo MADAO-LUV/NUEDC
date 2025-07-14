@@ -1,4 +1,4 @@
-./objects/mpu6050.o: ..\Hardware\mpu6050.c ..\Hardware\MPU6050.h \
+./objects/ir_module.o: ..\Hardware\IR_Module.c ..\Hardware\IR_Moudle.h \
   ..\..\WHEELTEC_C07A_TB6612\ti_msp_dl_config.h \
   ..\source\ti\devices\msp\msp.h ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
@@ -65,10 +65,10 @@
   ..\source\ti\driverlib\dl_uart.h ..\source\ti\driverlib\dl_uart_main.h \
   ..\source\ti\driverlib\dl_vref.h ..\source\ti\driverlib\dl_wwdt.h \
   ..\source\ti\driverlib\m0p\dl_interrupt.h \
-  ..\source\ti\driverlib\m0p\dl_systick.h ..\Hardware\inv_mpu.h \
-  ..\Hardware\inv_mpu_dmp_motion_driver.h ..\Hardware\dmpKey.h \
-  ..\Hardware\dmpmap.h D:\keil5\ARM\ARMCLANG\include\stdio.h \
-  ..\Hardware\bsp_siic.h ..\Hardware\board.h \
+  ..\source\ti\driverlib\m0p\dl_systick.h ..\Hardware\board.h \
+  D:\keil5\ARM\ARMCLANG\include\stdio.h \
   D:\keil5\ARM\ARMCLANG\include\string.h ..\Hardware\led.h \
   ..\Hardware\key.h ..\Hardware\motor.h ..\Hardware\encoder.h \
-  ..\Hardware\IR_Moudle.h
+  ..\Hardware\MPU6050.h ..\Hardware\inv_mpu.h \
+  ..\Hardware\inv_mpu_dmp_motion_driver.h ..\Hardware\dmpKey.h \
+  ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h

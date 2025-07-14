@@ -34,6 +34,7 @@
 #include "oled.h"
 int32_t encoderA_cnt,PWMA,encoderB_cnt,PWMB;
 int Flag_Stop=1;
+char testS[40];
 int main(void)
 {
 	int i=0;
@@ -56,8 +57,11 @@ int main(void)
 		Read_DMP();
 //		printf("{B%f:%f:%f}$",Pitch,Roll,Yaw);
 //		printf("P:%.2f,R:%.2f,Y:%.2f\r\n",Pitch,Roll,Yaw);
-		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
+//		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
 		OLED_ShowString(2,2,(uint8_t *)"fuck you");
+		IR_Module_Read();
+		sprintf(testS,"IR1:%d,IR2:%d,IR3:%d,IR4:%d",ir_dh1_state, ir_dh2_state, ir_dh3_state, ir_dh4_state);
+		OLED_ShowString(0,3,(uint8_t *)testS);
 		OLED_Refresh_Gram();
 
     }

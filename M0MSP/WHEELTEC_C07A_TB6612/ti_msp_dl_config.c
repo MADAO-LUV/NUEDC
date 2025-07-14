@@ -158,6 +158,14 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 
     DL_GPIO_initDigitalInput(ENCODERB_E2B_IOMUX);
 
+    DL_GPIO_initDigitalInput(ID_DH4_PIN_17_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH3_PIN_16_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH2_PIN_12_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH1_PIN_27_IOMUX);
+
     DL_GPIO_clearPins(GPIOA, OLED_SCL_PIN_SCL_PIN |
 		GPIO_SDA_PIN_SDA_PIN |
 		AIN_AIN1_PIN |

@@ -634,6 +634,16 @@
               <FileType>5</FileType>
               <FilePath>..\Hardware\mpu6050.h</FilePath>
             </File>
+            <File>
+              <FileName>IR_Module.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\IR_Module.c</FilePath>
+            </File>
+            <File>
+              <FileName>IR_Moudle.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\IR_Moudle.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
