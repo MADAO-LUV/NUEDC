@@ -20,33 +20,30 @@ All rights reserved
 ***********************************************/
 void Set_PWM(int pwmL,int pwmR)
 {
-	 if(pwmL>0)
+	 if(pwmR>0)
     {
-        DL_GPIO_setPins(AIN_PORT,AIN_AIN2_PIN);
+        DL_GPIO_setPins(AIN_PORT,AIN_AIN1_PIN);  // 1
+        DL_GPIO_clearPins(AIN_PORT,AIN_AIN2_PIN); // 0
+		DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmR),GPIO_PWM_0_C0_IDX);
+       
+    }
+    else
+    {
+         DL_GPIO_setPins(AIN_PORT,AIN_AIN2_PIN);
         DL_GPIO_clearPins(AIN_PORT,AIN_AIN1_PIN);
 		DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmR),GPIO_PWM_0_C0_IDX);
        
     }
-    else
+    if(pwmL>0)
     {
-         DL_GPIO_setPins(AIN_PORT,AIN_AIN1_PIN);
-        DL_GPIO_clearPins(AIN_PORT,AIN_AIN2_PIN);
-		DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmR),GPIO_PWM_0_C0_IDX);
-       
-    }
-    if(pwmR>0)
-    {
-		DL_GPIO_setPins(BIN_PORT,BIN_BIN2_PIN);
-        DL_GPIO_clearPins(BIN_PORT,BIN_BIN1_PIN);
-		
-		
-       
+		DL_GPIO_setPins(BIN_PORT,BIN_BIN1_PIN);
+        DL_GPIO_clearPins(BIN_PORT,BIN_BIN2_PIN);
         DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmL),GPIO_PWM_0_C1_IDX);
     }
     else
     {
-		DL_GPIO_setPins(BIN_PORT,BIN_BIN1_PIN);
-        DL_GPIO_clearPins(BIN_PORT,BIN_BIN2_PIN);
+		DL_GPIO_setPins(BIN_PORT,BIN_BIN2_PIN);
+        DL_GPIO_clearPins(BIN_PORT,BIN_BIN1_PIN);
 		
        
 		 DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmL),GPIO_PWM_0_C1_IDX);
@@ -95,5 +92,87 @@ int Velocity_B(int TargetVelocity, int CurrentVelocity)
 	    if(ControlVelocityB>7000) ControlVelocityB=7000;
 	    else if(ControlVelocityB<-7000) ControlVelocityB=-7000;
 		return ControlVelocityB; //返回速度控制值
+}
+
+
+
+void Motor_Left(int pwmL)
+{
+
+    if(pwmL>0)
+    {
+		DL_GPIO_setPins(BIN_PORT,BIN_BIN1_PIN);
+        DL_GPIO_clearPins(BIN_PORT,BIN_BIN2_PIN);
+        DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmL),GPIO_PWM_0_C1_IDX);
+    }
+    else
+    {
+		DL_GPIO_setPins(BIN_PORT,BIN_BIN2_PIN);
+        DL_GPIO_clearPins(BIN_PORT,BIN_BIN1_PIN);
+		
+       
+		 DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmL),GPIO_PWM_0_C1_IDX);
+    }
+
+}
+
+
+
+void Motor_Right(int pwmR)
+{
+	if(pwmR>0)
+    {
+        DL_GPIO_setPins(AIN_PORT,AIN_AIN1_PIN);  // 1
+        DL_GPIO_clearPins(AIN_PORT,AIN_AIN2_PIN); // 0
+		DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmR),GPIO_PWM_0_C0_IDX);
+       
+    }
+    else
+    {
+         DL_GPIO_setPins(AIN_PORT,AIN_AIN2_PIN);
+        DL_GPIO_clearPins(AIN_PORT,AIN_AIN1_PIN);
+		DL_Timer_setCaptureCompareValue(PWM_0_INST,ABS(pwmR),GPIO_PWM_0_C0_IDX);
+       
+    }
+	
+}
+/***************************************************************************
+函数功能：小车停止
+***************************************************************************/
+void Motor_Stop(void)
+{
+	Set_PWM(0,0);
+}
+
+
+/***************************************************************************
+函数功能：小车前进
+***************************************************************************/
+void Motor_Gofarward(int speed,int currentL,int currentR)
+{
+	int pwml = Velocity_A(speed,currentL);
+	int pwmr = Velocity_B(speed,currentR);
+	Set_PWM(pwml,pwmr);
+}
+
+
+/***************************************************************************
+函数功能：小车左转
+***************************************************************************/
+void Motor_Turn_Left(int speed,int currentL,int currentR)
+{
+	int pwml = Velocity_A(speed / 2,currentL);
+	int pwmr = Velocity_B(speed,currentR);
+	Set_PWM(pwml,pwmr);
+}
+
+/***************************************************************************
+函数功能：小车右转
+***************************************************************************/
+void Motor_Turn_Right(int speed,int currentL,int currentR)
+{
+	int pwml = Velocity_A(speed,currentL);
+	int pwmr = Velocity_B(speed / 2,currentR);
+	Set_PWM(pwml,pwmr);
 }
 

@@ -35,6 +35,9 @@
 int32_t encoderA_cnt,PWMA,encoderB_cnt,PWMB;
 int Flag_Stop=1;
 char testS[40];
+int baes_speed = 20; // 基础速度
+int compute_error(void);
+void Car_PD_Control(void);
 int main(void)
 {
 	int i=0;
@@ -60,10 +63,11 @@ int main(void)
 //		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
 		OLED_ShowString(2,2,(uint8_t *)"fuck you");
 		IR_Module_Read();
-		sprintf(testS,"IR1:%d,IR2:%d,IR3:%d,IR4:%d",ir_dh1_state, ir_dh2_state, ir_dh3_state, ir_dh4_state);
+//		sprintf(testS,"IR1:%d,IR2:%d,IR3:%d,IR4:%d",ir_dh1_state, ir_dh2_state, ir_dh3_state, ir_dh4_state);
+		sprintf(testS,"Lspeed:%d,Rspeed:%d",encoderA_cnt,encoderB_cnt);
 		OLED_ShowString(0,3,(uint8_t *)testS);
 		OLED_Refresh_Gram();
-
+		
     }
 }
 
@@ -81,12 +85,54 @@ void TIMER_0_INST_IRQHandler(void)
 			Get_Encoder_countA=Get_Encoder_countB=0;
 			if(!Flag_Stop)//单击BLS开启或关闭电机
 			{
-				PWMA = -Velocity_A(7000,encoderA_cnt);//PID控制   0 --- 60 pwm设置
-				PWMB = -Velocity_B(10,encoderB_cnt);//PID控制
-				Set_PWM(PWMA,PWMB);//PWM波驱动电机
+				Car_PD_Control();
+//				PWMA = Velocity_A(-40,encoderA_cnt);//PID控制   0 --- 60 pwm设置
+//				PWMB = Velocity_B(-20,encoderB_cnt);//PID控制
+//				Set_PWM(PWMA,PWMB);//PWM波驱动电机
+//				Motor_Left(PWMA);
+//				Motor_Right(PWMB);
 			}else Set_PWM(0,0);//关闭电机
 			
 		}
     }
+}
+
+int compute_error(void)
+{
+	int numerator = ir_dh1_state * (-3)+ ir_dh2_state * (-1) +ir_dh3_state * 1 + ir_dh4_state * (3);
+	int denominator = ir_dh1_state+ir_dh2_state+ir_dh3_state+ir_dh4_state;
+	if(denominator == 0)return 666; //都没有读到 停止 
+	return numerator / denominator;
+}
+
+float Kp = 2,Kd = 0.02;
+void Car_PD_Control(void) {
+    int error = compute_error();
+	static int last_error;
+    if (error == 666) {
+        // 丢线处理：你可以让小车原地左转尝试找回
+        Motor_Stop();
+        return;
+    }
+
+    int derivative = error - last_error;
+    last_error = error;
+
+    int correction = (int)(Kp * error + Kd * derivative);
+
+    // 计算左右轮 PWM
+    int leftSpeed = baes_speed - correction;
+    int rightSpeed = baes_speed + correction;
+
+    // 限制在 0~100 范围
+    if (leftSpeed > 35) leftSpeed = 35;
+    if (leftSpeed < 0) leftSpeed = 0;
+    if (rightSpeed > 35) rightSpeed = 35;
+    if (rightSpeed < 0) rightSpeed = 0;
+
+	PWMA = Velocity_A(leftSpeed,encoderA_cnt);//PID控制   0 --- 60 pwm设置
+	PWMB = Velocity_B(rightSpeed,encoderB_cnt);//PID控制
+	
+	Set_PWM(PWMA,PWMB);
 }
 
