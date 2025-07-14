@@ -7,6 +7,10 @@
 #include "key.h"
 #include "motor.h"
 #include "encoder.h"
+#include "MPU6050.h"
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h"
+#include "bsp_siic.h"
 #define ABS(a)      (a>0 ? a:(-a))
 typedef int32_t  s32;
 typedef int16_t s16;

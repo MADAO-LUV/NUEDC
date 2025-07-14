@@ -68,4 +68,6 @@
   ..\source\ti\driverlib\m0p\dl_systick.h ..\Hardware\board.h \
   D:\keil5\ARM\ARMCLANG\include\stdio.h \
   D:\keil5\ARM\ARMCLANG\include\string.h ..\Hardware\led.h \
-  ..\Hardware\key.h ..\Hardware\encoder.h
+  ..\Hardware\key.h ..\Hardware\encoder.h ..\Hardware\MPU6050.h \
+  ..\Hardware\inv_mpu.h ..\Hardware\inv_mpu_dmp_motion_driver.h \
+  ..\Hardware\dmpKey.h ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h

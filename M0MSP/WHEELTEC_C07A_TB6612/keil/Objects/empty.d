@@ -69,4 +69,6 @@
   ..\source\ti\driverlib\m0p\dl_interrupt.h \
   ..\source\ti\driverlib\m0p\dl_systick.h ..\Hardware\led.h \
   ..\Hardware\key.h ..\Hardware\motor.h ..\Hardware\encoder.h \
-  ..\Hardware\oled.h
+  ..\Hardware\MPU6050.h ..\Hardware\inv_mpu.h \
+  ..\Hardware\inv_mpu_dmp_motion_driver.h ..\Hardware\dmpKey.h \
+  ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h ..\Hardware\oled.h

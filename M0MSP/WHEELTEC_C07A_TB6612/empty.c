@@ -46,9 +46,13 @@ int main(void)
 	NVIC_ClearPendingIRQ(TIMER_0_INST_INT_IRQN);
 	NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
 	OLED_Init();
+	MPU6050_initialize();
+	DMP_Init();
     while (1) 
     {
 		//串口1打印编码器数据
+		Read_DMP();
+		printf("Pitch:%.2lf\tRoll:%.2lf\tYaw:%.2lf\r\n",Pitch,Roll,Yaw);
 		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
 		OLED_ShowString(2,2,(uint8_t *)"fuck you");
 		OLED_Refresh_Gram();
