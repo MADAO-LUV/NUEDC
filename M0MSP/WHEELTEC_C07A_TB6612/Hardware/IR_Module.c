@@ -13,11 +13,11 @@ void IR_Module_Read(void)
      ir_dh1_state = IR_DH1_Read();
      
      // 打印引脚状态 (转换为0或1)
-     printf("IR_DH1: %d, IR_DH2: %d, IR_DH3: %d, IR_DH4: %d\r\n", 
-            ir_dh1_state ? 1 : 0,
-            ir_dh2_state ? 1 : 0, 
-            ir_dh3_state ? 1 : 0,
-            ir_dh4_state ? 1 : 0);
+//     printf("IR_DH1: %d, IR_DH2: %d, IR_DH3: %d, IR_DH4: %d\r\n", 
+//            ir_dh1_state ? 1 : 0,
+//            ir_dh2_state ? 1 : 0, 
+//            ir_dh3_state ? 1 : 0,
+//            ir_dh4_state ? 1 : 0);
 }
 
 

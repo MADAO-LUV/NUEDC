@@ -142,6 +142,14 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 
     DL_GPIO_initDigitalOutput(GPIO_SDA_PIN_SDA_IOMUX);
 
+    DL_GPIO_initDigitalInput(ID_DH4_PIN_17_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH3_PIN_16_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH2_PIN_12_IOMUX);
+
+    DL_GPIO_initDigitalInput(ID_DH1_PIN_27_IOMUX);
+
     DL_GPIO_initDigitalOutput(AIN_AIN1_IOMUX);
 
     DL_GPIO_initDigitalOutput(AIN_AIN2_IOMUX);
@@ -158,13 +166,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 
     DL_GPIO_initDigitalInput(ENCODERB_E2B_IOMUX);
 
-    DL_GPIO_initDigitalInput(ID_DH4_PIN_17_IOMUX);
-
-    DL_GPIO_initDigitalInput(ID_DH3_PIN_16_IOMUX);
-
-    DL_GPIO_initDigitalInput(ID_DH2_PIN_12_IOMUX);
-
-    DL_GPIO_initDigitalInput(ID_DH1_PIN_27_IOMUX);
+    DL_GPIO_initDigitalInputFeatures(USER_PIN_USER_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
 
     DL_GPIO_clearPins(GPIOA, OLED_SCL_PIN_SCL_PIN |
 		GPIO_SDA_PIN_SDA_PIN |

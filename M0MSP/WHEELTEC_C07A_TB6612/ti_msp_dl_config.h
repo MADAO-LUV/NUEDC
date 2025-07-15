@@ -177,6 +177,30 @@ extern "C" {
 /* Defines for PIN_SDA: GPIOA.31 with pinCMx 6 on package pin 39 */
 #define GPIO_SDA_PIN_SDA_PIN                                    (DL_GPIO_PIN_31)
 #define GPIO_SDA_PIN_SDA_IOMUX                                    (IOMUX_PINCM6)
+/* Port definition for Pin Group ID_DH4 */
+#define ID_DH4_PORT                                                      (GPIOB)
+
+/* Defines for PIN_17: GPIOB.17 with pinCMx 43 on package pin 14 */
+#define ID_DH4_PIN_17_PIN                                       (DL_GPIO_PIN_17)
+#define ID_DH4_PIN_17_IOMUX                                      (IOMUX_PINCM43)
+/* Port definition for Pin Group ID_DH3 */
+#define ID_DH3_PORT                                                      (GPIOB)
+
+/* Defines for PIN_16: GPIOB.16 with pinCMx 33 on package pin 4 */
+#define ID_DH3_PIN_16_PIN                                       (DL_GPIO_PIN_16)
+#define ID_DH3_PIN_16_IOMUX                                      (IOMUX_PINCM33)
+/* Port definition for Pin Group ID_DH2 */
+#define ID_DH2_PORT                                                      (GPIOA)
+
+/* Defines for PIN_12: GPIOA.12 with pinCMx 34 on package pin 5 */
+#define ID_DH2_PIN_12_PIN                                       (DL_GPIO_PIN_12)
+#define ID_DH2_PIN_12_IOMUX                                      (IOMUX_PINCM34)
+/* Port definition for Pin Group ID_DH1 */
+#define ID_DH1_PORT                                                      (GPIOA)
+
+/* Defines for PIN_27: GPIOA.27 with pinCMx 60 on package pin 31 */
+#define ID_DH1_PIN_27_PIN                                       (DL_GPIO_PIN_27)
+#define ID_DH1_PIN_27_IOMUX                                      (IOMUX_PINCM60)
 /* Port definition for Pin Group AIN */
 #define AIN_PORT                                                         (GPIOA)
 
@@ -223,30 +247,12 @@ extern "C" {
 #define ENCODERB_E2B_IIDX                                   (DL_GPIO_IIDX_DIO24)
 #define ENCODERB_E2B_PIN                                        (DL_GPIO_PIN_24)
 #define ENCODERB_E2B_IOMUX                                       (IOMUX_PINCM52)
-/* Port definition for Pin Group ID_DH4 */
-#define ID_DH4_PORT                                                      (GPIOB)
+/* Port definition for Pin Group USER */
+#define USER_PORT                                                        (GPIOB)
 
-/* Defines for PIN_17: GPIOB.17 with pinCMx 43 on package pin 14 */
-#define ID_DH4_PIN_17_PIN                                       (DL_GPIO_PIN_17)
-#define ID_DH4_PIN_17_IOMUX                                      (IOMUX_PINCM43)
-/* Port definition for Pin Group ID_DH3 */
-#define ID_DH3_PORT                                                      (GPIOB)
-
-/* Defines for PIN_16: GPIOB.16 with pinCMx 33 on package pin 4 */
-#define ID_DH3_PIN_16_PIN                                       (DL_GPIO_PIN_16)
-#define ID_DH3_PIN_16_IOMUX                                      (IOMUX_PINCM33)
-/* Port definition for Pin Group ID_DH2 */
-#define ID_DH2_PORT                                                      (GPIOA)
-
-/* Defines for PIN_12: GPIOA.12 with pinCMx 34 on package pin 5 */
-#define ID_DH2_PIN_12_PIN                                       (DL_GPIO_PIN_12)
-#define ID_DH2_PIN_12_IOMUX                                      (IOMUX_PINCM34)
-/* Port definition for Pin Group ID_DH1 */
-#define ID_DH1_PORT                                                      (GPIOA)
-
-/* Defines for PIN_27: GPIOA.27 with pinCMx 60 on package pin 31 */
-#define ID_DH1_PIN_27_PIN                                       (DL_GPIO_PIN_27)
-#define ID_DH1_PIN_27_IOMUX                                      (IOMUX_PINCM60)
+/* Defines for PIN_USER: GPIOB.8 with pinCMx 25 on package pin 60 */
+#define USER_PIN_USER_PIN                                        (DL_GPIO_PIN_8)
+#define USER_PIN_USER_IOMUX                                      (IOMUX_PINCM25)
 
 
 

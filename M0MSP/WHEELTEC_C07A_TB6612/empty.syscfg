@@ -23,6 +23,7 @@ const GPIO11  = GPIO.addInstance();
 const GPIO12  = GPIO.addInstance();
 const GPIO13  = GPIO.addInstance();
 const GPIO14  = GPIO.addInstance();
+const GPIO15  = GPIO.addInstance();
 const I2C     = scripting.addModule("/ti/driverlib/I2C", {}, false);
 const I2C1    = I2C.addInstance();
 const PWM     = scripting.addModule("/ti/driverlib/PWM", {}, false);
@@ -138,16 +139,23 @@ GPIO12.associatedPins[0].direction   = "INPUT";
 GPIO12.associatedPins[0].$name       = "PIN_16";
 
 GPIO13.$name                          = "ID_DH2";
+GPIO13.associatedPins[0].$name        = "PIN_12";
 GPIO13.associatedPins[0].assignedPort = "PORTA";
 GPIO13.associatedPins[0].assignedPin  = "12";
 GPIO13.associatedPins[0].direction    = "INPUT";
-GPIO13.associatedPins[0].$name        = "PIN_12";
 
 GPIO14.$name                          = "ID_DH1";
 GPIO14.associatedPins[0].assignedPort = "PORTA";
 GPIO14.associatedPins[0].assignedPin  = "27";
 GPIO14.associatedPins[0].direction    = "INPUT";
 GPIO14.associatedPins[0].$name        = "PIN_27";
+
+GPIO15.$name                              = "USER";
+GPIO15.port                               = "PORTB";
+GPIO15.associatedPins[0].$name            = "PIN_USER";
+GPIO15.associatedPins[0].direction        = "INPUT";
+GPIO15.associatedPins[0].internalResistor = "PULL_UP";
+GPIO15.associatedPins[0].assignedPin      = "8";
 
 I2C1.$name                           = "I2C_0";
 I2C1.basicEnableController           = true;
@@ -201,6 +209,7 @@ GPIO11.associatedPins[0].pin.$suggestSolution = "PB17";
 GPIO12.associatedPins[0].pin.$suggestSolution = "PB16";
 GPIO13.associatedPins[0].pin.$suggestSolution = "PA12";
 GPIO14.associatedPins[0].pin.$suggestSolution = "PA27";
+GPIO15.associatedPins[0].pin.$suggestSolution = "PB8";
 I2C1.peripheral.$suggestSolution              = "I2C0";
 I2C1.peripheral.sdaPin.$suggestSolution       = "PA0";
 I2C1.peripheral.sclPin.$suggestSolution       = "PA1";
