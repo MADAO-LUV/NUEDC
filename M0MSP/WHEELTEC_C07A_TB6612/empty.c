@@ -59,11 +59,7 @@ int main(void)
     {
 		//串口1打印编码器数据
 		Read_DMP();
-//		printf("{B%f:%f:%f}$",Pitch,Roll,Yaw);
-//		printf("P:%.2f,R:%.2f,Y:%.2f\r\n",Pitch,Roll,Yaw);
-//		printf("%d  %d\n\r",encoderA_cnt,encoderB_cnt);
-
-//		sprintf(testS,"IR1:%d,IR2:%d,IR3:%d,IR4:%d",ir_dh1_state, ir_dh2_state, ir_dh3_state, ir_dh4_state);
+		IR_Module_Read();
 		Menu();
 
 
@@ -85,9 +81,7 @@ void TIMER_0_INST_IRQHandler(void)
 		if(!Flag_Stop)//单击BLS开启或关闭电机
 		{
 				Car_PD_Control();
-//				PWMA = Velocity_A(35,encoderA_cnt);//PID控制   0 --- 60 pwm设置
-//				PWMB = Velocity_B(35,encoderB_cnt);//PID控制
-//				Set_PWM(PWMA,PWMB);//PWM波驱动电机			
+		
 		}else Set_PWM(0,0);//关闭电机
 		}
     }
@@ -95,9 +89,16 @@ void TIMER_0_INST_IRQHandler(void)
 
 int compute_error(void)
 {
-	IR_Module_Read();
-	int numerator = ir_dh1_state * (-3)+ ir_dh2_state * (-1) +ir_dh3_state * 1 + ir_dh4_state * (3);
-	int denominator = ir_dh1_state+ir_dh2_state+ir_dh3_state+ir_dh4_state;
+	
+	
+	    // 反转传感器值：黑线为1，白线为0
+    int s1 = !ir_dh1_state;  // 黑线=1，白线=0
+    int s2 = !ir_dh2_state;
+    int s3 = !ir_dh3_state;
+    int s4 = !ir_dh4_state;
+	
+	int numerator = s1 * (3)+ s2 * (1) + s3 * (-1) + s4 * (-3);
+	int denominator = s1 + s2 + s3 + s4;
 	if(denominator == 0)return 666; //都没有读到 停止 
 	return numerator / denominator;
 }
@@ -106,14 +107,7 @@ float Kp = 2,Kd = 0.02;
 void Car_PD_Control(void) {
     int error = compute_error();
 	static int last_error;
-//	if(Now.Per == PAGE_SENSOR) {
-//        // 在传感器页面直接以基础速度前进
-//        PWMA = Velocity_A(baes_speed, encoderA_cnt);
-//        PWMB = Velocity_B(baes_speed, encoderB_cnt);
-//        Set_PWM(PWMA, PWMB);
-//        return;
-//    }
-//	
+
     if (error == 666) {
         // 丢线处理：你可以让小车原地左转尝试找回
         Motor_Stop();
@@ -157,20 +151,24 @@ void Menu(void)
 			OLED_ShowString(0,16,(uint8_t *)testS);
 			sprintf(testS,"IR3:%d,IR4:%d",ir_dh3_state,ir_dh4_state);
 			OLED_ShowString(0,32,(uint8_t *)testS);
+			sprintf(testS,"BaseSpeed:%d",baes_speed);
+			OLED_ShowString(0,48,(uint8_t *)testS);
+			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
+			OLED_ShowString(100, 48, (uint8_t *)testS);
 		break;
 		
 		case 1:
-			OLED_ShowString(0,0,(uint8_t *)"IR Control PD");
+			OLED_ShowString(0,0,(uint8_t *)"IR PD");
 			sprintf(testS,"KP:%.1f  %s",Kp,(current_param == TUNE_KP ? "<" : " "));
 			OLED_ShowString(0,16,(uint8_t *)testS);
 			sprintf(testS,"KD:%.2f  %s",Kd,(current_param == TUNE_KD ? "<" : " "));
 			OLED_ShowString(0,32,(uint8_t *)testS);
-			sprintf(testS, "Dir:%s", tuning_direction ? "+" : "-");
-			OLED_ShowString(0, 48, (uint8_t *)testS);
+			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
+			OLED_ShowString(100, 0, (uint8_t *)testS);
 		break;
 		
 		case 2:
-			OLED_ShowString(0, 0, (uint8_t *)"Car Speed PID");
+			OLED_ShowString(0, 0, (uint8_t *)"Car PID");
 
 			sprintf(testS, "Kp:%.2f%s", Velcity_Kp, (current_param == TUNE_KP ? "<" : " "));
 			OLED_ShowString(0, 16, (uint8_t *)testS);
@@ -181,7 +179,7 @@ void Menu(void)
 			sprintf(testS, "Kd:%.2f%s", Velcity_Kd, (current_param == TUNE_KD ? "<" : " "));
 			OLED_ShowString(0, 48, (uint8_t *)testS);
 		
-			sprintf(testS, "Dir:%s", tuning_direction ? "+" : "-");
+			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
 			OLED_ShowString(100, 0, (uint8_t *)testS);
 		break;
 	}

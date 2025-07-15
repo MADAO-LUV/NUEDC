@@ -61,6 +61,7 @@ typedef enum {PAGE_SENSOR = 0,PAGE_IR_PD = 1,PAGE_CAR_PID = 2}Page;
 typedef enum {TUNE_KP = 0,TUNE_KI,TUNE_KD}TuneTarget;
 extern int Flag_Stop;
 extern float Kp,Kd;
+extern int baes_speed;
 //Systick最大计数值,24位
 #define SysTickMAX_COUNT 0xFFFFFF
 

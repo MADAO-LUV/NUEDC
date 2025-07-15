@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\empty_LP_MSPM0G3507_nortos_keil.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\empty_LP_MSPM0G3507_nortos_keil.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Tue Jul 15 13:43:03 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6210000: Last Updated: Tue Jul 15 19:11:52 2025
 <BR><P>
 <H3>Maximum Stack Usage =        448 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -778,11 +778,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DL_GPIO_readPins
 </UL>
-<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;compute_error
+<BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8c]"></a>Key</STRONG> (Thumb, 624 bytes, Stack size 88 bytes, key.o(.text.Key))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = Key &rArr; __aeabi_fadd &rArr; _float_epilogue
+<P><STRONG><a name="[8c]"></a>Key</STRONG> (Thumb, 692 bytes, Stack size 96 bytes, key.o(.text.Key))
+<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = Key &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fcmpge
@@ -888,8 +888,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
-<P><STRONG><a name="[a0]"></a>Menu</STRONG> (Thumb, 540 bytes, Stack size 144 bytes, empty.o(.text.Menu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Menu &rArr; OLED_ShowString &rArr; OLED_Clear &rArr; OLED_Refresh_Gram &rArr; OLED_WR_Byte &rArr; OLED_SCLK_Set &rArr; DL_GPIO_setPins
+<P><STRONG><a name="[a0]"></a>Menu</STRONG> (Thumb, 604 bytes, Stack size 152 bytes, empty.o(.text.Menu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = Menu &rArr; OLED_ShowString &rArr; OLED_Clear &rArr; OLED_Refresh_Gram &rArr; OLED_WR_Byte &rArr; OLED_SCLK_Set &rArr; DL_GPIO_setPins
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Gram
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -1258,11 +1258,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Key
 </UL>
 
-<P><STRONG><a name="[47]"></a>compute_error</STRONG> (Thumb, 92 bytes, Stack size 32 bytes, empty.o(.text.compute_error))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = compute_error &rArr; IR_Module_Read &rArr; DL_GPIO_readPins
+<P><STRONG><a name="[47]"></a>compute_error</STRONG> (Thumb, 120 bytes, Stack size 40 bytes, empty.o(.text.compute_error))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = compute_error &rArr; __aeabi_idiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IR_Module_Read
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idiv
+<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Car_PD_Control
 </UL>
@@ -1474,10 +1473,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
-<P><STRONG><a name="[1e]"></a>main</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, empty.o(.text.main))
+<P><STRONG><a name="[1e]"></a>main</STRONG> (Thumb, 88 bytes, Stack size 24 bytes, empty.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 448<LI>Call Chain = main &rArr; Read_DMP &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Menu
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IR_Module_Read
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_DMP
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize

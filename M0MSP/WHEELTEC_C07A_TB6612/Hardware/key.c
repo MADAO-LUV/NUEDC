@@ -230,6 +230,9 @@ void Key(void)
 			if (Velcity_Kp < 0.0f) Velcity_Kp = 0.0f;
 			if (Velcity_Ki < 0.0f) Velcity_Ki = 0.0f;
 			if (Velcity_Kd < 0.0f) Velcity_Kd = 0.0f;			
+		}else if(Now.Per == PAGE_SENSOR)
+		{
+			baes_speed += (tuning_direction ? 1 : -1);
 		}
 	}else if(user == 2)
 	{
@@ -243,8 +246,10 @@ void Key(void)
 			current_param++;
 			if (current_param > TUNE_KD)
 				current_param = TUNE_KP;
+		}else if(Now.Per == PAGE_SENSOR)
+		{
+			tuning_direction = !tuning_direction;
 		}
-		
 	}
 	
 }
