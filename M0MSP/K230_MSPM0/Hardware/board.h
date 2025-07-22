@@ -14,6 +14,8 @@
 #include "IR_Moudle.h"
 #include "Went.h"
 #include "K230.h"
+#include "Turn.h"
+
 #define ABS(a)      (a>0 ? a:(-a))
 typedef int32_t  s32;
 typedef int16_t s16;
@@ -59,7 +61,7 @@ typedef enum
 	Tank_Car
 } CarMode;
 
-typedef enum {PAGE_SENSOR = 0,PAGE_IR_PD = 1,PAGE_CAR_PID = 2,PAGE_ANGLE = 3}Page;
+typedef enum {PAGE_SENSOR = 0,PAGE_IR_PD = 1,PAGE_CAR_PID = 2,PAGE_ANGLE = 3,PAGE_TURN = 4}Page;
 typedef enum {TUNE_KP = 0,TUNE_KI,TUNE_KD}TuneTarget;
 extern int Flag_Stop;
 extern float Kp,Kd;

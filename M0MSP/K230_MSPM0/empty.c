@@ -54,16 +54,20 @@ int main(void)
 	// 开启k230接收中断
 	NVIC_ClearPendingIRQ( UART1_INT_IRQn );
 	NVIC_EnableIRQ( UART1_INT_IRQn);
+	//
+	Turn_Init();
+	Set_Target_Angle(-45.0f);
+	//
 	OLED_Init();
 	MPU6050_initialize();
 	DMP_Init();
-
+	
 //	Yaw = Yaw+18;
     delay_1ms(15000);
     while (1) 
     {
 		//串口1打印编码器数据
-		Read_DMP();
+							Read_DMP();
 		Menu();
     }
 }
@@ -136,6 +140,28 @@ void Car_Control(void)
 }	
 
 
+// 加入了小车转向控制
+void Cat_Turn(void)
+{
+	float current_yaw = Yaw;
+	    // 检查是否到达目标角度（误差小于2度）
+//    float error = fabs(Turn_Controller.target - current_yaw);
+//    if (error < 1.0f) {
+
+//        Motor_Stop();  // 停止电机
+//		Flag_Stop = 1;
+//		return;
+//    }
+
+	float turn_controller = Turn_Compute(current_yaw) + baes_speed * 100;
+	
+//	int left = Velocity_A( -turn_controller,encoderA_cnt);
+//	int right = Velocity_B(turn_controller,encoderB_cnt);
+	
+	
+	Set_PWM(turn_controller,-turn_controller);
+	
+}
 
 
 //10ms定时中断   
@@ -154,7 +180,11 @@ void TIMER_0_INST_IRQHandler(void)
 		if(!Flag_Stop)//单击BLS开启或关闭电机
 		{
 //				Car_IR_PID();
-				Car_Control();
+#ifdef     turn
+				Cat_Turn();   //准备放入转向控制
+#else
+			Car_Control();
+#endif
 		}else Set_PWM(0,0);//关闭电机
 		}
     }
@@ -174,20 +204,20 @@ void Menu(void)
 	switch(Now.Per)
 	{
 		case 0:
-//			sprintf(testS,"L:%d,R:%d",encoderA_cnt,encoderB_cnt);
-//			OLED_ShowString(0,0,(uint8_t *)testS);
-//			sprintf(testS,"Y:%.1f",Yaw);
-//			OLED_ShowString(70,0,(uint8_t *)testS);
-//			sprintf(testS,"IR1:%d,IR2:%d",ir_dh1_state,ir_dh2_state);
-//			OLED_ShowString(0,16,(uint8_t *)testS);
-//			sprintf(testS,"IR3:%d,IR4:%d",ir_dh3_state,ir_dh4_state);
-//			OLED_ShowString(0,32,(uint8_t *)testS);
-//			sprintf(testS,"BaseSpeed:%d",baes_speed);
-//			OLED_ShowString(0,48,(uint8_t *)testS);
-//			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
-//			OLED_ShowString(100, 48, (uint8_t *)testS);
-			sprintf(testS,"X:%d,Y:%d",k230_recv.follow_x,k230_recv.follow_y);
+			sprintf(testS,"L:%d,R:%d",encoderA_cnt,encoderB_cnt);
 			OLED_ShowString(0,0,(uint8_t *)testS);
+			sprintf(testS,"Y:%.1f",Yaw);
+			OLED_ShowString(70,0,(uint8_t *)testS);
+			sprintf(testS,"IR1:%d,IR2:%d",ir_dh1_state,ir_dh2_state);
+			OLED_ShowString(0,16,(uint8_t *)testS);
+			sprintf(testS,"IR3:%d,IR4:%d",ir_dh3_state,ir_dh4_state);
+			OLED_ShowString(0,32,(uint8_t *)testS);
+			sprintf(testS,"BaseSpeed:%d",baes_speed);
+			OLED_ShowString(0,48,(uint8_t *)testS);
+			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
+			OLED_ShowString(100, 48, (uint8_t *)testS);
+//			sprintf(testS,"X:%d,Y:%d",k230_recv.follow_x,k230_recv.follow_y);
+//			OLED_ShowString(0,0,(uint8_t *)testS);
 		
 		break;
 		
@@ -231,6 +261,23 @@ void Menu(void)
 		
 			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
 			OLED_ShowString(100, 0, (uint8_t *)testS);
+		break;
+		
+		case 4:
+			OLED_ShowString(0, 0, (uint8_t *)"Turn PID");
+			
+			sprintf(testS, "Kp:%.2f%s", Turn_Controller.Kp, (current_param == TUNE_KP ? "<" : " "));
+			OLED_ShowString(0, 16, (uint8_t *)testS);
+
+			sprintf(testS, "Ki:%.2f%s", Turn_Controller.Ki, (current_param == TUNE_KI ? "<" : " "));
+			OLED_ShowString(0, 32, (uint8_t *)testS);
+
+			sprintf(testS, "Kd:%.2f%s", Turn_Controller.Kd, (current_param == TUNE_KD ? "<" : " "));
+			OLED_ShowString(0, 48, (uint8_t *)testS);
+		
+			sprintf(testS, "D:%s", tuning_direction ? "+" : "-");
+			OLED_ShowString(100, 0, (uint8_t *)testS);
+		
 		break;
 	}
 		OLED_Refresh_Gram();

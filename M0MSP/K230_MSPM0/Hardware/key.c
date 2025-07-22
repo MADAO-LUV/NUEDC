@@ -144,14 +144,14 @@ void Key(void)
 		if(Now.Per == PAGE_SENSOR)
 		{
 			Flag_Stop = !Flag_Stop;
-		}else if(Now.Per == PAGE_IR_PD || Now.Per == PAGE_CAR_PID || Now.Per == PAGE_ANGLE)
+		}else if(Now.Per == PAGE_IR_PD || Now.Per == PAGE_CAR_PID || Now.Per == PAGE_ANGLE || Now.Per == PAGE_TURN)
 		{
 			tuning_direction = !tuning_direction;
 		}
 	}else if(key == 2)  // Ò³ÃæÇÐ»»
 	{
 		Now.Per++;
-		if(Now.Per > 3)
+		if(Now.Per > 4)
 		{
 			Now.Per = 0;
 		}
@@ -200,6 +200,18 @@ void Key(void)
 			if (Angle_Yaw.Ki < 0.0f) Angle_Yaw.Ki = 0.0f;
 			if (Angle_Yaw.Kd < 0.0f) Angle_Yaw.Kd = 0.0f;			
 			
+		}else if(Now.Per == PAGE_TURN)
+		{
+			if (current_param == TUNE_KP)
+				Turn_Controller.Kp += (tuning_direction ? 1.5f : -1.5f);
+			else if (current_param == TUNE_KI)
+				Turn_Controller.Ki += (tuning_direction ? 0.01f : -0.01f);
+			else if (current_param == TUNE_KD)
+				Turn_Controller.Kd += (tuning_direction ? 0.01f : -0.01f);
+
+			if (Turn_Controller.Kp < 0.0f) Turn_Controller.Kp = 0.0f;
+			if (Turn_Controller.Ki < 0.0f) Turn_Controller.Ki = 0.0f;
+			if (Turn_Controller.Kd < 0.0f) Turn_Controller.Kd = 0.0f;				
 		}
 	}else if(user == 2)
 	{
@@ -218,6 +230,12 @@ void Key(void)
 			tuning_direction = !tuning_direction;
 		}
 		else if (Now.Per == PAGE_ANGLE)
+		{
+			current_param++;
+			if (current_param > TUNE_KD)
+				current_param = TUNE_KP;
+		}
+		else if (Now.Per == PAGE_TURN)
 		{
 			current_param++;
 			if (current_param > TUNE_KD)

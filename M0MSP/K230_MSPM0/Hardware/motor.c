@@ -1,5 +1,5 @@
 #include "motor.h"
-float Velcity_Kp=1.0,  Velcity_Ki=0.4,  Velcity_Kd; //相关速度PID参数
+float Velcity_Kp=2.0,  Velcity_Ki=0.01,  Velcity_Kd; //相关速度PID参数
 /***********************************************
 公司：轮趣科技（东莞）有限公司
 品牌：WHEELTEC
@@ -59,7 +59,7 @@ void Set_PWM(int pwmL,int pwmR)
 ***************************************************************************/
 int Velocity_A(int TargetVelocity, int CurrentVelocity)
 {  
-    int Bias;  //定义相关变量
+        int Bias;  //定义相关变量
 		static int ControlVelocityA, Last_biasA; //静态变量，函数调用结束后其值依然存在
 		
 		Bias=TargetVelocity-CurrentVelocity; //求速度偏差
@@ -68,8 +68,8 @@ int Velocity_A(int TargetVelocity, int CurrentVelocity)
                                                                    //Velcity_Kp*(Bias-Last_bias) 作用为限制加速度
 	                                                                 //Velcity_Ki*Bias             速度控制值由Bias不断积分得到 偏差越大加速度越大
 		Last_biasA=Bias;	
-	    if(ControlVelocityA>7000) ControlVelocityA=7000;
-	    else if(ControlVelocityA<-7000) ControlVelocityA=-7000;
+	    if(ControlVelocityA>3000) ControlVelocityA=3000;
+	    else if(ControlVelocityA<-3000) ControlVelocityA=-3000;
 		return ControlVelocityA; //返回速度控制值
 }
 
@@ -89,8 +89,8 @@ int Velocity_B(int TargetVelocity, int CurrentVelocity)
                                                                    //Velcity_Kp*(Bias-Last_bias) 作用为限制加速度
 	                                                                 //Velcity_Ki*Bias             速度控制值由Bias不断积分得到 偏差越大加速度越大
 		Last_biasB=Bias;	
-	    if(ControlVelocityB>7000) ControlVelocityB=7000;
-	    else if(ControlVelocityB<-7000) ControlVelocityB=-7000;
+	    if(ControlVelocityB>3000) ControlVelocityB=3000;
+	    else if(ControlVelocityB<-3000) ControlVelocityB=-3000;
 		return ControlVelocityB; //返回速度控制值
 }
 

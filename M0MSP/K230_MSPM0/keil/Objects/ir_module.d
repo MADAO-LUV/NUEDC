@@ -72,4 +72,4 @@
   ..\Hardware\MPU6050.h ..\Hardware\inv_mpu.h \
   ..\Hardware\inv_mpu_dmp_motion_driver.h ..\Hardware\dmpKey.h \
   ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h ..\Hardware\Went.h \
-  ..\Hardware\K230.h
+  ..\Hardware\K230.h ..\Hardware\Turn.h
