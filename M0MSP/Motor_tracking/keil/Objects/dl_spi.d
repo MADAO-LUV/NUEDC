@@ -4,12 +4,12 @@
   ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
   ..\source\third_party\CMSIS\Core\Include\core_cm0plus.h \
-  D:\PerpareCode\M0MSP\WHEELTEC_C07A_TB6612\source\third_party\CMSIS\Core\Include\cmsis_version.h \
-  D:\PerpareCode\M0MSP\WHEELTEC_C07A_TB6612\source\third_party\CMSIS\Core\Include\cmsis_compiler.h \
-  D:\PerpareCode\M0MSP\WHEELTEC_C07A_TB6612\source\third_party\CMSIS\Core\Include\cmsis_armclang.h \
+  D:\PerpareCode\M0MSP\Motor_tracking\source\third_party\CMSIS\Core\Include\cmsis_version.h \
+  D:\PerpareCode\M0MSP\Motor_tracking\source\third_party\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\PerpareCode\M0MSP\Motor_tracking\source\third_party\CMSIS\Core\Include\cmsis_armclang.h \
   D:\keil5\ARM\ARMCLANG\include\arm_compat.h \
   D:\keil5\ARM\ARMCLANG\include\arm_acle.h \
-  D:\PerpareCode\M0MSP\WHEELTEC_C07A_TB6612\source\third_party\CMSIS\Core\Include\mpu_armv7.h \
+  D:\PerpareCode\M0MSP\Motor_tracking\source\third_party\CMSIS\Core\Include\mpu_armv7.h \
   ..\source\ti\devices\msp\peripherals\hw_adc12.h \
   ..\source\ti\devices\msp\peripherals\hw_aes.h \
   ..\source\ti\devices\msp\peripherals\hw_comp.h \

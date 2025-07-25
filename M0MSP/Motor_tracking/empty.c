@@ -37,7 +37,10 @@ int Flag_Stop=1;
 char testS[40];
 int baes_speed = 20; // 基础速度
 float Kp = 2,Kd = 0.02;
-
+	uint32_t cnt;
+	uint8_t flag;
+	uint32_t cnt_s;
+	uint32_t flag_s;
 void Menu(void); // 用于菜单选择
 int main(void)
 {
@@ -53,14 +56,17 @@ int main(void)
 	OLED_Init();
 	MPU6050_initialize();
 	DMP_Init();
+	printf("begin");
 //	Yaw = Yaw+18;
-//	delay_ms(15000);
+	delay_ms(15000);
+	flag = 1;
     while (1) 
     {
 		//串口1打印编码器数据
-//		Read_DMP();
+		Read_DMP();
 
-		Menu();
+//		delay_1ms(2000);
+//		Menu();
 
 
     }
@@ -129,18 +135,36 @@ void TIMER_0_INST_IRQHandler(void)
 {
     if(DL_TimerA_getPendingInterrupt(TIMER_0_INST))
     {
-        if(DL_TIMER_IIDX_ZERO)
-        {
-			LED_Flash(100);//led闪烁
-			Key();//获取当前BLS按键状态
-			encoderA_cnt = -Get_Encoder_countA;//两个电机安装相反，其中一个编码器值需要相反
-			encoderB_cnt =  Get_Encoder_countB;
-			Get_Encoder_countA=Get_Encoder_countB=0;
-		if(!Flag_Stop)//单击BLS开启或关闭电机
+//        if(DL_TIMER_IIDX_ZERO)
+//        {
+//			LED_Flash(100);//led闪烁
+//			Key();//获取当前BLS按键状态
+//			encoderA_cnt = -Get_Encoder_countA;//两个电机安装相反，其中一个编码器值需要相反
+//			encoderB_cnt =  Get_Encoder_countB;
+//			Get_Encoder_countA=Get_Encoder_countB=0;
+//		if(!Flag_Stop)//单击BLS开启或关闭电机
+//		{
+//				Car_IR_PID();
+//		
+//		}else Set_PWM(0,0);//关闭电机
+//		}
+		cnt++;
+		if(cnt >= 100)
 		{
-				Car_IR_PID();
-		
-		}else Set_PWM(0,0);//关闭电机
+			cnt = 0;
+			cnt_s += 1;
+			if(cnt_s % 2 == 0)
+			{
+				flag_s = 1;
+			}
+		}
+		if(flag != 0)
+		{
+			if(flag_s == 1)
+			{
+				printf("time:%d ms, Yaw:%.2f\r\n",cnt_s,Yaw);
+				flag_s = 0; 
+			}
 		}
     }
 }
