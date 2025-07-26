@@ -76,13 +76,16 @@ def init_servo():
     pwm1 = PWM(1, 50, (1.5/20) * 100, enable = True)
     pwm0.enable(1)
     pwm1.enable(1)    #使能引脚
+    return pwm0,pwm1
+
+
 
 try:
     # 初始化设备 / Initialize devices
     sensor = init_sensor()
     init_display()
     sensor.run()
-
+    pwm0,pwm1 = init_servo()
     clock = time.clock()
 
     # 选择要检测的颜色索引 (0:红, 1:绿, 2:蓝) / Select color index to detect
@@ -94,7 +97,7 @@ try:
     while True:
         clock.tick()
         img = sensor.snapshot()
-
+        img = img.copy(roi=(320,280,640,480))
         # 检测指定颜色 / Detect specified color
         blobs = img.find_blobs([threshold], area_threshold=5000, merge=True)
         if blobs:

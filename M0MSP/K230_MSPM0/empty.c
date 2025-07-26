@@ -56,18 +56,14 @@ int main(void)
 	NVIC_EnableIRQ( UART1_INT_IRQn);
 	//
 	Turn_Init();
-	Set_Target_Angle(-45.0f);
+	Set_Target_Angle(90.0f);
 	//
 	OLED_Init();
-	MPU6050_initialize();
-	DMP_Init();
-	
-//	Yaw = Yaw+18;
-    delay_1ms(15000);
+	jy61pInit();
     while (1) 
     {
 		//串口1打印编码器数据
-							Read_DMP();
+		Yaw = get_angle();
 		Menu();
     }
 }
@@ -153,13 +149,22 @@ void Cat_Turn(void)
 //		return;
 //    }
 
-	float turn_controller = Turn_Compute(current_yaw) + baes_speed * 100;
+	int turn_controller = Turn_Compute(current_yaw)*100;
+	
+	if(turn_controller > 2500)
+	{
+		turn_controller = 2500;
+	}else if(turn_controller < -2500)
+	{
+		turn_controller = -2500;
+	}
 	
 //	int left = Velocity_A( -turn_controller,encoderA_cnt);
 //	int right = Velocity_B(turn_controller,encoderB_cnt);
 	
 	
 	Set_PWM(turn_controller,-turn_controller);
+
 	
 }
 

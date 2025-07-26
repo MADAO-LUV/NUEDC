@@ -168,7 +168,6 @@ GPIO16.associatedPins[1].initialValue = "SET";
 GPIO16.associatedPins[1].ioStructure  = "OD";
 
 I2C1.$name                           = "I2C_0";
-I2C1.basicEnableController           = true;
 I2C1.basicControllerStandardBusSpeed = "Fast";
 I2C1.sdaPinConfig.$name              = "ti_driverlib_gpio_GPIOPinGeneric0";
 I2C1.sclPinConfig.$name              = "ti_driverlib_gpio_GPIOPinGeneric1";

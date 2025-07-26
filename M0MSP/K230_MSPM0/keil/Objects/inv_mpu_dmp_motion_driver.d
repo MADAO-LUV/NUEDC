@@ -1,7 +1,7 @@
 ./objects/inv_mpu_dmp_motion_driver.o: \
   ..\Hardware\inv_mpu_dmp_motion_driver.c \
-  ..\..\WHEELTEC_C07A_TB6612\ti_msp_dl_config.h \
-  ..\source\ti\devices\msp\msp.h ..\source\ti\devices\DeviceFamily.h \
+  ..\..\K230_MSPM0\ti_msp_dl_config.h ..\source\ti\devices\msp\msp.h \
+  ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
   D:\keil5\ARM\ARMCLANG\include\stdint.h \
   D:\keil5\ARM\ARMCLANG\include\stdbool.h \

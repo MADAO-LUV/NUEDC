@@ -1,6 +1,6 @@
 ./objects/encoder.o: ..\Hardware\encoder.c ..\Hardware\encoder.h \
-  ..\..\WHEELTEC_C07A_TB6612\ti_msp_dl_config.h \
-  ..\source\ti\devices\msp\msp.h ..\source\ti\devices\DeviceFamily.h \
+  ..\..\K230_MSPM0\ti_msp_dl_config.h ..\source\ti\devices\msp\msp.h \
+  ..\source\ti\devices\DeviceFamily.h \
   ..\source\ti\devices\msp\m0p\mspm0g350x.h \
   D:\keil5\ARM\ARMCLANG\include\stdint.h \
   D:\keil5\ARM\ARMCLANG\include\stdbool.h \
@@ -72,4 +72,4 @@
   ..\Hardware\inv_mpu.h ..\Hardware\inv_mpu_dmp_motion_driver.h \
   ..\Hardware\dmpKey.h ..\Hardware\dmpmap.h ..\Hardware\bsp_siic.h \
   ..\Hardware\IR_Moudle.h ..\Hardware\Went.h ..\Hardware\K230.h \
-  ..\Hardware\Turn.h
+  ..\Hardware\Turn.h ..\Hardware\jy61p.h

@@ -15,6 +15,7 @@
 #include "Went.h"
 #include "K230.h"
 #include "Turn.h"
+#include "jy61p.h"
 
 #define ABS(a)      (a>0 ? a:(-a))
 typedef int32_t  s32;

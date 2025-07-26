@@ -37,6 +37,7 @@ int Flag_Stop=1;
 char testS[40];
 int baes_speed = 10; // 基础速度
 float Kp = 2,Kd = 0.02;
+float data;
 void Car_Control(void);
 
 void Menu(void); // 用于菜单选择
@@ -54,14 +55,11 @@ int main(void)
 	OLED_Init();
 	jy61pInit();
 
-//	Yaw = Yaw+18;
-    delay_1ms(15000);
     while (1) 
     {
 		//串口1打印编码器数据
-		int data = (int)get_angle();
-		printf("Z = %d\r\n",data);
-
+		data = get_angle();
+//		delay_ms(100);
 		Menu();
     }
 }
@@ -125,14 +123,14 @@ void Car_Control(void)
 {
 	 float diff_speed;
 	
-	diff_speed = Yaw_Compute(0.0f,Yaw);
+	diff_speed = Yaw_Compute(0.0f,data);
 	
 	int pwml = baes_speed * 100 - diff_speed;
 	int pwmr = baes_speed * 100 + diff_speed;
 
-//	int speedl = Velocity_A(pwml,encoderA_cnt);
-//	int speedr = Velocity_B(pwmr,encoderB_cnt);
+
 	Set_PWM(pwml,pwmr);
+//	Set_PWM(speedl,speedr);
 }	
 
 
@@ -176,7 +174,7 @@ void Menu(void)
 		case 0:
 			sprintf(testS,"L:%d,R:%d",encoderA_cnt,encoderB_cnt);
 			OLED_ShowString(0,0,(uint8_t *)testS);
-			sprintf(testS,"Y:%.1f",Yaw);
+			sprintf(testS,"Y:%.2f",data);
 			OLED_ShowString(70,0,(uint8_t *)testS);
 			sprintf(testS,"IR1:%d,IR2:%d",ir_dh1_state,ir_dh2_state);
 			OLED_ShowString(0,16,(uint8_t *)testS);

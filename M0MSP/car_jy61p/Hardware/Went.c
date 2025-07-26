@@ -1,6 +1,6 @@
 #include "Went.h"
 float yaw_drift = 0.0f; //进行零漂补偿
-Yaw_PID Angle_Yaw = {56.0f,0.0f,0.6f};
+Yaw_PID Angle_Yaw = {56.0f,0.01f,0.6f};
 /*******
 这里存放我要使用的走直线啥的
 
@@ -9,7 +9,7 @@ Yaw_PID Angle_Yaw = {56.0f,0.0f,0.6f};
 *******/
 float Yaw_Compute(float target,float current)
 {
-	const float MAX_DELTA = 2.0f; // 度/控制周期（每次计算允许的最大变化值）
+	const float MAX_DELTA = 1.0f; // 度/控制周期（每次计算允许的最大变化值）
 	static float last_bais,last_value;
 	float bais;
 	static float D,I; //微分量

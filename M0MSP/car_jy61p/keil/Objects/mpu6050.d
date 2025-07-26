@@ -71,4 +71,4 @@
   ..\Hardware\bsp_siic.h ..\Hardware\board.h \
   D:\keil5\ARM\ARMCLANG\include\string.h ..\Hardware\led.h \
   ..\Hardware\key.h ..\Hardware\motor.h ..\Hardware\encoder.h \
-  ..\Hardware\IR_Moudle.h ..\Hardware\Went.h
+  ..\Hardware\IR_Moudle.h ..\Hardware\Went.h ..\Hardware\jy61p.h

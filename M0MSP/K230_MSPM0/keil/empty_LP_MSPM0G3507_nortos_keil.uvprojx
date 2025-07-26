@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3507__,MPU6050,MOTION_DRIVER_TARGET_MSPM0</Define>
               <Undefine></Undefine>
-              <IncludePath>..\source;..\source\third_party\CMSIS\Core\Include;..\Hardware;..\..\WHEELTEC_C07A_TB6612;..\Control</IncludePath>
+              <IncludePath>..\source;..\source\third_party\CMSIS\Core\Include;..\Hardware;..\Control;..\..\K230_MSPM0</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -673,6 +673,16 @@
               <FileName>Turn.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Hardware\Turn.h</FilePath>
+            </File>
+            <File>
+              <FileName>jy61p.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\jy61p.c</FilePath>
+            </File>
+            <File>
+              <FileName>jy61p.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\jy61p.h</FilePath>
             </File>
           </Files>
         </Group>

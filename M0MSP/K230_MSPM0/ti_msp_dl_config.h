@@ -107,18 +107,18 @@ extern "C" {
 
 
 /* Defines for I2C_0 */
-#define I2C_0_INST                                                          I2C0
-#define I2C_0_INST_IRQHandler                                    I2C0_IRQHandler
-#define I2C_0_INST_INT_IRQN                                        I2C0_INT_IRQn
+#define I2C_0_INST                                                          I2C1
+#define I2C_0_INST_IRQHandler                                    I2C1_IRQHandler
+#define I2C_0_INST_INT_IRQN                                        I2C1_INT_IRQn
 #define I2C_0_BUS_SPEED_HZ                                                400000
 #define GPIO_I2C_0_SDA_PORT                                                GPIOA
-#define GPIO_I2C_0_SDA_PIN                                         DL_GPIO_PIN_0
-#define GPIO_I2C_0_IOMUX_SDA                                      (IOMUX_PINCM1)
-#define GPIO_I2C_0_IOMUX_SDA_FUNC                       IOMUX_PINCM1_PF_I2C0_SDA
+#define GPIO_I2C_0_SDA_PIN                                         DL_GPIO_PIN_3
+#define GPIO_I2C_0_IOMUX_SDA                                      (IOMUX_PINCM8)
+#define GPIO_I2C_0_IOMUX_SDA_FUNC                       IOMUX_PINCM8_PF_I2C1_SDA
 #define GPIO_I2C_0_SCL_PORT                                                GPIOA
-#define GPIO_I2C_0_SCL_PIN                                         DL_GPIO_PIN_1
-#define GPIO_I2C_0_IOMUX_SCL                                      (IOMUX_PINCM2)
-#define GPIO_I2C_0_IOMUX_SCL_FUNC                       IOMUX_PINCM2_PF_I2C0_SCL
+#define GPIO_I2C_0_SCL_PIN                                        DL_GPIO_PIN_15
+#define GPIO_I2C_0_IOMUX_SCL                                     (IOMUX_PINCM37)
+#define GPIO_I2C_0_IOMUX_SCL_FUNC                      IOMUX_PINCM37_PF_I2C1_SCL
 
 
 /* Defines for UART_0 */
@@ -268,6 +268,15 @@ extern "C" {
 #define ENCODERB_E2B_IIDX                                   (DL_GPIO_IIDX_DIO24)
 #define ENCODERB_E2B_PIN                                        (DL_GPIO_PIN_24)
 #define ENCODERB_E2B_IOMUX                                       (IOMUX_PINCM52)
+/* Port definition for Pin Group GPIO */
+#define GPIO_PORT                                                        (GPIOA)
+
+/* Defines for SCL: GPIOA.0 with pinCMx 1 on package pin 33 */
+#define GPIO_SCL_PIN                                             (DL_GPIO_PIN_0)
+#define GPIO_SCL_IOMUX                                            (IOMUX_PINCM1)
+/* Defines for SDA: GPIOA.1 with pinCMx 2 on package pin 34 */
+#define GPIO_SDA_PIN                                             (DL_GPIO_PIN_1)
+#define GPIO_SDA_IOMUX                                            (IOMUX_PINCM2)
 
 
 
