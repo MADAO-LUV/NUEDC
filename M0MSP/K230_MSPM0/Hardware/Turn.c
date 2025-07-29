@@ -4,7 +4,7 @@ Turn_PID Turn_Controller = {0};
 
 void Turn_Init(void)
 {
-    Turn_Controller.Kp = 1.0f;
+    Turn_Controller.Kp = 0.3f;
     Turn_Controller.Ki = 0.01f;
     Turn_Controller.Kd = 0.4f;
     Turn_Controller.integral = 0.0f;
