@@ -78,8 +78,9 @@ void TIMER_0_INST_IRQHandler(void)
 
 			}
 //			Draw_Circle_Physical();
-
-				draw_sine_wave();
+			draw_square();
+//			draw_triangle();
+//				draw_sine_wave();
 
 		}
 		       
